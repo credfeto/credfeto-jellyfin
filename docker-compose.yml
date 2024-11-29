@@ -15,6 +15,7 @@ services:
     volumes:
       - /config/jellyfin:/config
       - /cache/jellyfin:/cache
-      - /home/markr/Podcasts:/media/Podcasts
+      - /data/podcasts:/media/Podcasts
       - /data/music:/media/Music
+      - /data/music-videos:/media/MusicVideos
       - /data/videos:/media/Videos

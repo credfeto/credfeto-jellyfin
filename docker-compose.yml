@@ -17,5 +17,4 @@ services:
       - /cache/jellyfin:/cache
       - /data/podcasts:/media/Podcasts
       - /data/music:/media/Music
-      - /data/music-videos:/media/MusicVideos
       - /data/videos:/media/Videos

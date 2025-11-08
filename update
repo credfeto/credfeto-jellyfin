@@ -4,5 +4,22 @@ mkdir -p /data/cache
 mkdir -p /data/config
 mkdir -p /data/media
 
+docker volume create \
+  --opt type=none \
+  --opt o=bind \
+  --opt device=/data/cache \
+  jellyfin_cache
+
+docker volume create \
+  --opt type=none \
+  --opt o=bind \
+  --opt device=/data/config \
+  jellyfin_config
+
+docker volume create \
+  --opt type=none \
+  --opt o=bind \
+  --opt device=/data/media \
+  jellyfin_media
 
 docker compose pull && docker compose up -d

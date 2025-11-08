@@ -1,4 +1,8 @@
 #! /bin/sh
 
+mkdir -p /data/cache
+mkdir -p /data/config
+mkdir -p /data/media
+
 
 docker compose pull && docker compose up -d

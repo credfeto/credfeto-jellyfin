@@ -1,5 +1,13 @@
 services:
- 
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    environment:
+      WATCHTOWER_POLL_INTERVAL: 3600
+
   jellyfin:
     image: jellyfin/jellyfin:latest
     container_name: jellyfin
@@ -8,13 +16,22 @@ services:
     stop_grace_period: 500s
     stop_signal: SIGINT
     ports:
-      - 8096:8096
-      - 8920:8920
-      - 1900:1900
-      - 7359:7359
+      - "8096:8096/tcp"
+#      - 8920:8920
+#      - 1900:1900
+#      - 7359:7359
     volumes:
-      - /config/jellyfin:/config
-      - /cache/jellyfin:/cache
-      - /data/podcasts:/media/Podcasts
-      - /data/music:/media/Music
-      - /data/videos:/media/Videos
+      - jellyfin_config:/config
+      - jellyfin_cache:/cache
+      - jellyfin_media:/media
+
+volumes:
+  jellyfin_config:
+    name: jellyfin_config
+    external: true
+  jellyfin_cache:
+    name: jellyfin_cache
+    external: true
+  jellyfin_media:
+    name: jellyfin_media
+    external: true
